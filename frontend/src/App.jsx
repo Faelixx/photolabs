@@ -3,7 +3,6 @@ import React from 'react';
 import PhotoListItem from './components/PhotoListItem';
 import './App.scss';
 
-
 const sampleDataForPhotoListItem = {
   id: "1",
   location: {
@@ -15,17 +14,21 @@ const sampleDataForPhotoListItem = {
   profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
 };
 
+const photos = Array.from({ length: 3 }, () => sampleDataForPhotoListItem);
 // Note: Rendering a single component to build components in isolation
 const App = () => {
+  console.log(photos);
   return (
     <div className="App">
-      <PhotoListItem
-        id={sampleDataForPhotoListItem.id}
-        location={sampleDataForPhotoListItem.location}
-        username={sampleDataForPhotoListItem.username}
-        postImage={sampleDataForPhotoListItem.imageSource}
-        profileImage={sampleDataForPhotoListItem.profile}
-      />
+      {photos.map((photo, index) => (
+        <PhotoListItem
+          key={index}
+          id={photo.id}
+          location={photo.location}
+          username={photo.username}
+          postImage={photo.imageSource}
+          profileImage={photo.profile}/>
+      ))}
     </div>
   );
 };
