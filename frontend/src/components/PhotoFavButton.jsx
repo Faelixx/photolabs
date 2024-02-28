@@ -10,12 +10,13 @@ const PhotoFavButton = () => {
 
   const clickLike = function() {
     setLikeStatus(prevLikeStatus => !prevLikeStatus);
+    console.log(likeStatus);
   };
 
   return (
-    <div onClick={() => clickLike()} style={{color: `rgba(255, 0, 0,${likeStatus})`}} className="photo-list__fav-icon">
+    <div onClick={() => clickLike()} className="photo-list__fav-icon">
       <div className="photo-list__fav-icon-svg">
-        <FavIcon />
+        <FavIcon selected={likeStatus}/>
       </div>
     </div>
   );
