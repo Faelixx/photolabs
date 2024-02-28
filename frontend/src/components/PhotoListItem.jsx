@@ -16,11 +16,11 @@ import "../styles/PhotoListItem.scss";
 
 const PhotoListItem = (props) => {
   return (
-    <div>
-      <img src={props.sampleDataForPhotoListItem.imageSource}></img>
-      <img src={props.sampleDataForPhotoListItem.profile}></img>
-      <p>{props.sampleDataForPhotoListItem.username}</p>
-      <p>{props.sampleDataForPhotoListItem.location.city}, {props.sampleDataForPhotoListItem.location.country}</p>
+    <div className="photo-list__item" >
+      <img className="photo-list__image" src={props.postImage} />
+      <img src={props.profile} />
+      <p> {props.username}</p>
+      <p>{props.location.city}, {props.location.country}</p>
     </div>
   );
 };
