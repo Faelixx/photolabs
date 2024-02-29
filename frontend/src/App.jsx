@@ -7,7 +7,7 @@ import './App.scss';
 // Note: Rendering a single component to build components in isolation
 const App = () => {
   return (
-    <div className="App">
+    <div className="home-route">
       <TopNavigation />
       <PhotoList />
     </div>
