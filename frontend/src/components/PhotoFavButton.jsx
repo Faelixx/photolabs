@@ -10,7 +10,6 @@ const PhotoFavButton = () => {
 
   const clickLike = function() {
     setLikeStatus(prevLikeStatus => !prevLikeStatus);
-    console.log(likeStatus);
   };
 
   return (
