@@ -1,13 +1,13 @@
 import React from "react";
 
 import "../styles/PhotoList.scss";
-import photos from "mocks/photos";
 import PhotoListItem from "./PhotoListItem";
 
-const PhotoList = () => {
+const PhotoList = (props) => {
+  console.log(props);
   return (
     <ul className="photo-list">
-      {photos.map((el) => (
+      {props.photos.map((el) => (
         <li key={el.id}>
           <PhotoListItem
             location={el.location}
