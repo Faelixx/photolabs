@@ -6,7 +6,7 @@ import { set } from 'immutable';
 
 const PhotoFavButton = (props) => {
   return (
-    <div onClick={() => props.clickLike} className="photo-list__fav-icon">
+    <div onClick={() => props.clickLike()} className="photo-list__fav-icon">
       <div className="photo-list__fav-icon-svg">
         <FavIcon selected={props.likeStatus}/>
       </div>
