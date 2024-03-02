@@ -4,18 +4,11 @@ import FavIcon from './FavIcon';
 import '../styles/PhotoFavButton.scss';
 import { set } from 'immutable';
 
-const PhotoFavButton = () => {
-
-  const [likeStatus, setLikeStatus] = useState(false);
-
-  const clickLike = function() {
-    setLikeStatus(prevLikeStatus => !prevLikeStatus);
-  };
-
+const PhotoFavButton = (props) => {
   return (
-    <div onClick={() => clickLike()} className="photo-list__fav-icon">
+    <div onClick={() => props.clickLike} className="photo-list__fav-icon">
       <div className="photo-list__fav-icon-svg">
-        <FavIcon selected={likeStatus}/>
+        <FavIcon selected={props.likeStatus}/>
       </div>
     </div>
   );
