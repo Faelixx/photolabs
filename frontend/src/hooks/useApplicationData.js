@@ -1,47 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useReducer } from 'react';
 
+const initialState = {
+  favPhotos: [],
+  modalOpen: false,
+  modalDetails: ''
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+  case 'TOGGLE_FAV_PHOTO':
+    return {
+      ...state,
+      favPhotos: state.favPhotos.includes(action.payload)
+        ? state.favPhotos.filter(id => id !== action.payload)
+        : [...state.favPhotos, action.payload]
+    };
+  case 'TOGGLE_MODAL':
+    return {
+      ...state,
+      modalOpen: !state.modalOpen,
+      modalDetails: action.payload || ''
+    };
+  default:
+    return state;
+  }
+};
 //useApplicationData custom hook
 const useApplicationData = () => {
+  const [state, dispatch] = useReducer(reducer, initialState);
 
-  const [favPhotos, setFavPhotos] = useState([]);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [modalDetails, setModalDetails] = useState('');
   // Like/unlike photos
   const toggleFavPhoto = (photoId) => {
-    setFavPhotos((currentFav) => {
-      if (currentFav.includes(photoId)) {
-        return currentFav.filter(id => id !== photoId);
-      } else {
-        return [...currentFav, photoId];
-      }
-    });
-  };
-  // Create photo details for modal
-  const photoDetails = (details) => {
-    if (modalDetails === '') {
-      setModalDetails(details);
-      return modalDetails;
-    } else if (modalOpen === false) {
-      setModalDetails('');
-    } else {
-      setModalDetails('');
-    }
+    dispatch({ type: 'TOGGLE_FAV_PHOTO', payload: photoId });
   };
 
-  const openModal = () => {
-    setModalOpen(!modalOpen);
-  };
-
-  // Trigger both for onClick event
   const toggleModal = (details) => {
-    openModal();
-    photoDetails(details);
+    dispatch({ type:'TOGGLE_MODAL', payload: details });
   };
 
   return {
-    favPhotos,
-    modalOpen,
-    modalDetails,
+    favPhotos: state.favPhotos,
+    modalOpen: state.modalOpen,
+    modalDetails: state.modalDetails,
     toggleModal,
     toggleFavPhoto
   }
@@ -50,3 +50,4 @@ const useApplicationData = () => {
 };
 
 export default useApplicationData;
+
