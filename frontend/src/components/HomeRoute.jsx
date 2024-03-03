@@ -1,4 +1,4 @@
-import React, { useReducerm, useState, useCallback } from "react";
+import React, { useReducer, useState, useCallback } from "react";
 
 import TopNavigation from 'components/TopNavigationBar';
 import PhotoList from 'components/PhotoList';
@@ -6,33 +6,22 @@ import PhotoList from 'components/PhotoList';
 
 const HomeRoute = function(props) {
 
+  const [favPhotos, setFavPhotos] = useState([]);
 
-  const [likeStatus, setLikeStatus] = useState([]);
-
-  // const clickLike = useCallback(() => {
-  //   setLikeStatus(prevLikeStatus => !prevLikeStatus);
-  // }, []);
-  const clickLike = function() {
-    setLikeStatus(prevLikeStatus => !prevLikeStatus);
+  const toggleFavPhoto = (photoId) => {
+    setFavPhotos((currentFav) => {
+      if (currentFav.includes(photoId)) {
+        return currentFav.filter(id => id !== photoId);
+      } else {
+        return [...currentFav, photoId];
+      }
+    });
   };
-
-
-  // const [likeStatus, dispatch] = useReducer((likeStatus, initState) => {
-  //   if (likeStatus === false) {
-  //     likeStatus = initState;
-  //   } else {
-  //     initState = false;
-  //   }
-  // });
-  
-  // const clickLike = function() {
-  //   setLikeStatus(likeStatus => !likeStatus);
-  // };
 
   return (
     <div className="home-route">
-      <TopNavigation topics={props.topics} likeStatus={likeStatus}/>
-      <PhotoList photos={props.photos} likeStatus={likeStatus} clickLike={clickLike}/>
+      <TopNavigation topics={props.topics}/>
+      <PhotoList photos={props.photos} toggleFavPhoto={toggleFavPhoto} favPhotos={favPhotos}/>
     </div>
   );
 };
