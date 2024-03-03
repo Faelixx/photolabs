@@ -15,7 +15,9 @@ const PhotoList = (props) => {
             profileImage={el.user.profile}
             toggleFavPhoto={props.toggleFavPhoto}
             photoId={el.id}
-            favPhotos={props.favPhotos}/>
+            favPhotos={props.favPhotos}
+            modal={props.modal}
+            toggleModal={props.toggleModal}/>
         </li>
       ))}
     </ul>

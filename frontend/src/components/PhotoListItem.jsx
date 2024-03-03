@@ -2,6 +2,7 @@ import React from "react";
 import PhotoFavButton from "./PhotoFavButton";
 
 import "../styles/PhotoListItem.scss";
+import PhotoDetailsModal from "routes/PhotoDetailsModal";
 
 const PhotoListItem = (props) => {
   return (
@@ -10,7 +11,7 @@ const PhotoListItem = (props) => {
         toggleFavPhoto={props.toggleFavPhoto}
         photoId={props.photoId}
         favPhotos={props.favPhotos.includes(props.photoId)}/>
-      <img className="photo-list__image" src={props.postImage} />
+      <img className="photo-list__image" src={props.postImage} onClick={() => props.toggleModal()}/>
       <div className="photo-list__user-details">
         <img className="photo-list__user-profile" src={props.profile} />
         <div className="photo-list__user-info">
