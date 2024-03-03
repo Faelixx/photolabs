@@ -12,6 +12,7 @@ const PhotoList = (props) => {
             location={el.location}
             username={el.user.name}
             postImage={el.urls.regular}
+            fullImage={el.urls.full}
             profileImage={el.user.profile}
             toggleFavPhoto={props.toggleFavPhoto}
             photoId={el.id}

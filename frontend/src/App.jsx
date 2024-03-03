@@ -11,8 +11,9 @@ const App = () => {
 
   const [modalOpen, setModalOpen] = useState(false);
 
-  const toggleModal = () => {
+  const toggleModal = (photo) => {
     setModalOpen(!modalOpen);
+    console.log(photo);
   };
 
   return (
@@ -25,6 +26,7 @@ const App = () => {
       />
       {modalOpen === true &&
       <PhotoDetailsModal
+        photos={photos}
         modal={modalOpen}
         toggleModal={toggleModal}/>}
     </div>
