@@ -9,7 +9,7 @@ const PhotoListItem = (props) => {
       <PhotoFavButton
         toggleFavPhoto={props.toggleFavPhoto}
         photoId={props.photoId}
-        favPhotos={props.favPhotos}/>
+        favPhotos={props.favPhotos.includes(props.photoId)}/>
       <img className="photo-list__image" src={props.postImage} />
       <div className="photo-list__user-details">
         <img className="photo-list__user-profile" src={props.profile} />
