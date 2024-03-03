@@ -4,6 +4,7 @@ import "../styles/PhotoList.scss";
 import PhotoListItem from "./PhotoListItem";
 
 const PhotoList = (props) => {
+  console.log(props);
   return (
     <ul className="photo-list">
       {props.photos.map((el) => (
@@ -18,7 +19,8 @@ const PhotoList = (props) => {
             photoId={el.id}
             favPhotos={props.favPhotos}
             modal={props.modal}
-            toggleModal={props.toggleModal}/>
+            toggleModal={props.toggleModal}
+            modalDetails={props.modalDetails}/>
         </li>
       ))}
     </ul>

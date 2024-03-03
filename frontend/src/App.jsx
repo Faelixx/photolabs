@@ -9,11 +9,39 @@ import topics from 'mocks/topics';
 // Note: Rendering a single component to build components in isolation
 const App = () => {
 
-  const [modalOpen, setModalOpen] = useState(false);
+  const [favPhotos, setFavPhotos] = useState([]);
 
-  const toggleModal = (photo) => {
+  const toggleFavPhoto = (photoId) => {
+    setFavPhotos((currentFav) => {
+      if (currentFav.includes(photoId)) {
+        return currentFav.filter(id => id !== photoId);
+      } else {
+        return [...currentFav, photoId];
+      }
+    });
+  };
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalDetails, setModalDetails] = useState('');
+
+  const photoDetails = (details) => {
+    if (modalDetails === '') {
+      setModalDetails(details);
+      return modalDetails;
+    } else if (modalOpen === false) {
+      setModalDetails('');
+    } else {
+      setModalDetails('');
+    }
+  };
+
+  const openModal = () => {
     setModalOpen(!modalOpen);
-    console.log(photo);
+  };
+
+  const toggleModal = (details) => {
+    openModal();
+    photoDetails(details);
   };
 
   return (
@@ -23,12 +51,17 @@ const App = () => {
         topics={topics}
         modal={modalOpen}
         toggleModal={toggleModal}
-      />
+        modalDetails={modalDetails}
+        toggleFavPhoto={toggleFavPhoto}
+        favPhotos={favPhotos}/>
       {modalOpen === true &&
       <PhotoDetailsModal
         photos={photos}
-        modal={modalOpen}
-        toggleModal={toggleModal}/>}
+        toggleModal={toggleModal}
+        modalDetails={modalDetails}
+        toggleFavPhoto={toggleFavPhoto}
+        favPhotos={favPhotos}/>
+      }
     </div>
   );
 };

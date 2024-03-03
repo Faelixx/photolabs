@@ -2,9 +2,9 @@ import React from "react";
 import PhotoFavButton from "./PhotoFavButton";
 
 import "../styles/PhotoListItem.scss";
-import PhotoDetailsModal from "routes/PhotoDetailsModal";
 
 const PhotoListItem = (props) => {
+
   const modalDetails = {
     photoId: props.photoId,
     profileImage: props.profileImage,
@@ -15,6 +15,7 @@ const PhotoListItem = (props) => {
       country: props.location.country
     }
   };
+
   return (
     <div className="photo-list__item" >
       <PhotoFavButton
@@ -23,7 +24,7 @@ const PhotoListItem = (props) => {
         favPhotos={props.favPhotos.includes(props.photoId)}/>
       <img className="photo-list__image" src={props.postImage} onClick={() => props.toggleModal(modalDetails)}/>
       <div className="photo-list__user-details">
-        <img className="photo-list__user-profile" src={props.profile} />
+        <img className="photo-list__user-profile" src={props.profileImage} />
         <div className="photo-list__user-info">
           <p>{props.username}</p>
           <div className="photo-list__user-location">

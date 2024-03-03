@@ -6,30 +6,19 @@ import PhotoList from 'components/PhotoList';
 
 const HomeRoute = function(props) {
 
-  const [favPhotos, setFavPhotos] = useState([]);
-
-  const toggleFavPhoto = (photoId) => {
-    setFavPhotos((currentFav) => {
-      if (currentFav.includes(photoId)) {
-        return currentFav.filter(id => id !== photoId);
-      } else {
-        return [...currentFav, photoId];
-      }
-    });
-  };
-
   return (
     <div className="home-route">
       <TopNavigation
         topics={props.topics}
-        toggleFavPhoto={toggleFavPhoto}
-        isFavPhotoExist={favPhotos}/>
+        toggleFavPhoto={props.toggleFavPhoto}
+        favPhotos={props.favPhotos}/>
       <PhotoList
         photos={props.photos}
-        toggleFavPhoto={toggleFavPhoto}
-        favPhotos={favPhotos}
+        toggleFavPhoto={props.toggleFavPhoto}
+        favPhotos={props.favPhotos}
         modal={props.modal}
-        toggleModal={props.toggleModal}/>
+        toggleModal={props.toggleModal}
+        modalDetails={props.modalDetails}/>
     </div>
   );
 };
