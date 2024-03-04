@@ -6,14 +6,19 @@ const initialState = {
   modalOpen: false,
   modalDetails: '',
   photoData: [],
-  topicData: []
+  topicData: [],
+  topicClicked: false,
+  topicId: null
 };
 
 const ACTIONS = {
   TOGGLE_FAV_PHOTO: 'TOGGLE_FAV_PHOTO',
   TOGGLE_MODAL: 'TOGGLE_MODAL',
   SET_PHOTO_DATA: 'SET_PHOTO_DATA',
-  SET_TOPICS: 'SET_TOPICS'
+  SET_TOPICS: 'SET_TOPICS',
+  GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS',
+  SET_TOPIC_CLICKED: 'SET_TOPIC_CLICKED',
+  SET_CLICKED_TOPIC_ID: 'SET_CLICKED_TOPIC_ID'
 };
 
 const reducer = (state, action) => {
@@ -41,6 +46,22 @@ const reducer = (state, action) => {
       ...state,
       topicData: action.payload
     };
+  case ACTIONS.GET_PHOTOS_BY_TOPICS:
+    return {
+      ...state,
+      photoData: action.payload
+    };
+  case ACTIONS.SET_TOPIC_CLICKED:
+    return {
+      ...state,
+      topicClicked: action.payload
+    };
+
+  case ACTIONS.SET_CLICKED_TOPIC_ID:
+    return {
+      ...state,
+      clickedTopicId: action.payload
+    };
   default:
     return state;
   }
@@ -57,6 +78,24 @@ const useApplicationData = () => {
   const toggleModal = (details) => {
     dispatch({ type: ACTIONS.TOGGLE_MODAL, payload: details });
   };
+
+  const setTopicClicked = (clicked, topicId = null) => {
+    dispatch({ type: ACTIONS.SET_TOPIC_CLICKED, payload: clicked});
+    if (topicId !== null) {
+      dispatch({ type: ACTIONS.SET_CLICKED_TOPIC_ID, payload: topicId });
+    }
+  };
+
+  useEffect(() => {
+    if (state.topicClicked) {
+      if (state.clickedTopicId) {
+        fetch(`/api/topics/photos/${state.clickedTopicId}`)
+          .then(res => res.json())
+          .then(data => dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: data}));
+      }
+    }
+  }, [state.topicClicked, state.clickedTopicId]);
+
 
   useEffect(() => {
     fetch("/api/photos")
@@ -77,7 +116,8 @@ const useApplicationData = () => {
     modalOpen: state.modalOpen,
     modalDetails: state.modalDetails,
     toggleModal,
-    toggleFavPhoto
+    toggleFavPhoto,
+    setTopicClicked
   }
 
   ;

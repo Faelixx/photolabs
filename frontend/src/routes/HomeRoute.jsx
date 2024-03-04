@@ -11,7 +11,9 @@ const HomeRoute = function(props) {
       <TopNavigation
         topics={props.topics}
         toggleFavPhoto={props.toggleFavPhoto}
-        favPhotos={props.favPhotos}/>
+        favPhotos={props.favPhotos}
+        setTopicClicked={props.setTopicClicked}
+      />
       <PhotoList
         photos={props.photos}
         toggleFavPhoto={props.toggleFavPhoto}

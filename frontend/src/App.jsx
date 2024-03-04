@@ -17,7 +17,8 @@ const App = () => {
     modalOpen,
     modalDetails,
     toggleModal,
-    toggleFavPhoto
+    toggleFavPhoto,
+    setTopicClicked
   } = useApplicationData();
 
   return (
@@ -30,6 +31,7 @@ const App = () => {
         modalDetails={modalDetails}
         toggleModal={toggleModal}
         toggleFavPhoto={toggleFavPhoto}
+        setTopicClicked={setTopicClicked}
       />
       {modalOpen === true &&
       <PhotoDetailsModal

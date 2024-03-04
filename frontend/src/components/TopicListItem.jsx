@@ -2,16 +2,16 @@ import React from "react";
 
 import "../styles/TopicListItem.scss";
 
-const sampleDataForTopicListItem = {
-  id: "1",
-  slug: "topic-1",
-  label: "Nature",
-};
 
 const TopicListItem = (props) => {
+
+  const setTopicClicked = () => {
+    props.setTopicClicked(true, props.topicId);
+  };
+
   return (
     <div className="topic-list__item">
-      <span>
+      <span onClick={setTopicClicked}>
         {props.title}
       </span>
     </div>
