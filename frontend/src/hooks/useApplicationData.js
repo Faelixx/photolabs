@@ -1,3 +1,4 @@
+// import { stat } from 'fs';
 import React, { useState, useReducer, useEffect } from 'react';
 
 const initialState = {
@@ -11,7 +12,8 @@ const initialState = {
 const ACTIONS = {
   TOGGLE_FAV_PHOTO: 'TOGGLE_FAV_PHOTO',
   TOGGLE_MODAL: 'TOGGLE_MODAL',
-  SET_PHOTO_DATA: 'SET_PHOTO_DATA'
+  SET_PHOTO_DATA: 'SET_PHOTO_DATA',
+  SET_TOPICS: 'SET_TOPICS'
 };
 
 const reducer = (state, action) => {
@@ -34,6 +36,11 @@ const reducer = (state, action) => {
       ...state,
       photoData: action.payload
     };
+  case ACTIONS.SET_TOPICS:
+    return {
+      ...state,
+      topicData: action.payload
+    };
   default:
     return state;
   }
@@ -52,13 +59,20 @@ const useApplicationData = () => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:8001/api/photos")
+    fetch("/api/photos")
       .then(res => res.json())
       .then(data => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data}));
-  });
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/topics")
+      .then(res => res.json())
+      .then(data => dispatch({ type: ACTIONS.SET_TOPICS, payload: data}));
+  }, []);
 
   return {
     photos: state.photoData,
+    topics: state.topicData,
     favPhotos: state.favPhotos,
     modalOpen: state.modalOpen,
     modalDetails: state.modalDetails,
