@@ -19,6 +19,8 @@ const PhotoDetailsModal = ({
     fullImage,
     location
   } = modalDetails;
+
+  console.log(photoId);
   
   const similarPhotos = photos[photoId].similar_photos;
   const similarPhotosArr = [];

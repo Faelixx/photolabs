@@ -30,9 +30,7 @@ const PhotoListItem = (props) => {
           <div className="photo-list__user-location">
             <p>{props.location.city}, {props.location.country}</p>
           </div>
-
         </div>
-
       </div>
     </div>
   );

@@ -40,6 +40,7 @@ const App = () => {
         modalDetails={modalDetails}
         toggleModal={toggleModal}
         toggleFavPhoto={toggleFavPhoto}
+        setTopicClicked={setTopicClicked}
       />
       }
     </div>

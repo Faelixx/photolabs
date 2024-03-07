@@ -34,7 +34,7 @@ const reducer = (state, action) => {
     return {
       ...state,
       modalOpen: !state.modalOpen,
-      modalDetails: action.payload || ''
+      modalDetails: action.payload
     };
   case ACTIONS.SET_PHOTO_DATA:
     return {
