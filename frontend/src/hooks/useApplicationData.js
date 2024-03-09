@@ -1,5 +1,5 @@
 // import { stat } from 'fs';
-import React, { useState, useReducer, useEffect } from 'react';
+import React, { useReducer, useEffect } from 'react';
 
 const initialState = {
   favPhotos: [],
@@ -11,6 +11,7 @@ const initialState = {
   topicId: null
 };
 
+// Reducer actions to prevent typos
 const ACTIONS = {
   TOGGLE_FAV_PHOTO: 'TOGGLE_FAV_PHOTO',
   TOGGLE_MODAL: 'TOGGLE_MODAL',
@@ -66,7 +67,7 @@ const reducer = (state, action) => {
     return state;
   }
 };
-//useApplicationData custom hook
+// useApplicationData custom hook
 const useApplicationData = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -78,7 +79,8 @@ const useApplicationData = () => {
   const toggleModal = (details) => {
     dispatch({ type: ACTIONS.TOGGLE_MODAL, payload: details });
   };
-
+  
+  // Filter main page photo list
   const setTopicClicked = (clicked, topicId = null) => {
     dispatch({ type: ACTIONS.SET_TOPIC_CLICKED, payload: clicked});
     if (topicId !== null) {

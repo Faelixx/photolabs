@@ -19,22 +19,10 @@ const PhotoDetailsModal = ({
     fullImage,
     location
   } = modalDetails;
-
-  console.log(photoId);
   
-  const similarPhotos = photos[photoId].similar_photos;
-  const similarPhotosArr = [];
-
-  if (similarPhotosArr.length === 0) {
-    for (let photo in similarPhotos) {
-      if (Object.prototype.hasOwnProperty.call(similarPhotos, photo)) {
-        similarPhotosArr.push(similarPhotos[photo]);
-      }
-    }
-  } else {
-    similarPhotosArr.length = 0;
-  }
-
+  const clickedPhoto = photos.find(photo => photo.id === photoId);
+  const similarPhotos = clickedPhoto.similar_photos;
+  
   return (
     <div className="photo-details-modal">
       <button className="photo-details-modal__close-button" onClick={() => toggleModal()}>
@@ -56,9 +44,10 @@ const PhotoDetailsModal = ({
         </div>
         <h4 className="photo-details-modal__header">Similar Photos</h4>
         <div className='photo-details-modal__top-bar'>
+          {/* Related photos list */}
           <ul className='photo-list'>
             <PhotoList
-              photos={similarPhotosArr}
+              photos={similarPhotos}
               favPhotos={favPhotos}
               toggleFavPhoto={toggleFavPhoto}
               toggleModal={toggleModal}

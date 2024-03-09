@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import FavIcon from './FavIcon';
 import '../styles/PhotoFavButton.scss';
@@ -9,7 +9,6 @@ const PhotoFavButton = ({ photoId, toggleFavPhoto, favPhotos}) => {
 
   const clickLike = function() {
     setLikeStatus(prevLikeStatus => !prevLikeStatus);
-    
     toggleFavPhoto(photoId);
   };
 
