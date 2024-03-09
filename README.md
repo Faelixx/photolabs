@@ -16,6 +16,12 @@ Sort through photos based on the provided topics in the top navigation bar.
 
 By using the following [Source Code](https://github.com/lighthouse-labs/photolabs-starter), we created a front end UI that generates a list of photos from the backend api using react and Javascript.
 
+## Screenshots
+
+![Photolabs main page w/ top navigation bar](/docs/Photolabs_landing_page.png "Photolabs main page w/ top navigation bar")
+
+![Photolabs modal](/docs/Photolabs_modal.png "Photolabs modal")
+
 ### Dependencies
 
 * React
